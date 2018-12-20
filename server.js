@@ -11,16 +11,13 @@ app.use(bodyParser.json());
 
 
 //CORS
-app.use((req, res, next)=>{
-	res.render("Access-Control-Allow-Origin","*");
-	res.header("Access-Control-Allow-Headers",
-	"Origin, X-Requested-With, Content-Type, Accept, Authorization");
-	if(req.method === "OPTIONS"){
-		res.header("Access-Control-Allow-Methods", 
-		"PUT, POST, PATCH, DELETE, GET");
-		return res.status(200).json({});
-	}
-})
+app.all('*', function(req, res, next) {
+     var origin = req.get('origin'); 
+     res.header('Access-Control-Allow-Origin', origin);
+     res.header("Access-Control-Allow-Headers", "X-Requested-With");
+     res.header('Access-Control-Allow-Headers', 'Content-Type');
+     next();
+});
 
 
 const db = require('./config/keys').mongoURI;
