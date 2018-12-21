@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 //CORS
 app.all('*', function(req, res, next) {
      var origin = req.get('origin');
-     res.header('Access-Control-Allow-Origin', 'http://tu-api.herokuapp.com');
+     res.header('Access-Control-Allow-Origin', '*');
     //  res.header("Access-Control-Allow-Headers", "X-Requested-With");
      res.header('Access-Control-Allow-Headers', 'Content-Type');
      res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS');
