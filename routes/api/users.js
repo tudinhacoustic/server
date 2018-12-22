@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../../models/User')
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
-
+const Profile = require('../../models/Profile')
 
 //Load Input Validation
 const validateRegisterInput = require('../../validation/register');
@@ -47,15 +47,11 @@ router.post('/register', (req, res, next)=>{
               }
             })
 
-            const newUserProfile = Profile({
-              user: [{
-                id: user._id,
-                firstname: user.firstname,
-                lastname: user.lastname,
-                email: user.email
-              }]
+            const userProfile = new Profile({
+              user: user._id
             })
-            newUserProfile.save()
+            //console.log(req.user.id)
+            userProfile.save()
           })
           .catch(err=>console.log(err))
         })

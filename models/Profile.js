@@ -2,16 +2,10 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const ProfileSchema = new Schema({
-	user: [{
-		id: {
-			type: String,
-			required: true
-		},
-		firstname: {
-			type: String,
-			required: true
-		}
-	}],
+	user: {
+		type: Schema.Types.ObjectId,
+		ref: 'User'
+	},
 	handle: {
 		type: String,
 		required: false,
@@ -19,7 +13,7 @@ const ProfileSchema = new Schema({
 	},
 	backgroundimage: {
 		type: String,
-		required: false
+		required: false,
 	},
 	about: [{
 		user:
@@ -30,45 +24,44 @@ const ProfileSchema = new Schema({
 		description:
 		{
 			type: String,
-			required: false
+			required: true
 		},
 		address:
 		{
 			type: String,
-			required: false
+			required: true
 		},
 		phonenumber:
 		{
 			type: Number,
-			required: false
+			required: true
 		},
 		website:
 		{
 			type: String,
-			required: false
-		},
-		categories:
-		{
-			type: String,
-			required: false
+			required: true
 		},
 		job:
 		{
 			type: String,
-			required: false
+			required: true
 		},
 	}],
+	categories: {
+		type: [String],
+		required: true
+	},
 	experience: [{
 		company: {
 			type: String,
-			required: false
+			required: true
 		},
 		location: {
 			type: String
 		},
 		from: {
 			type: Date,
-			required: false
+			required: true
 		},
 		to: {
 			type: Date
@@ -84,26 +77,26 @@ const ProfileSchema = new Schema({
 	education: [{
 		school: {
 			type: String,
-			required: false
+			required: true
 		},
 		degree: {
 			type: String,
-			required: false
+			required: true
 		},
 		fieldofstudy: {
 			type: String,
-			required: false
+			required: true
 		},
 		from: {
 			type: Date,
-			required: false
+			required: true
 		},
 		to: {
 			type: Date
 		},
 		current: {
 			type: Boolean,
-			required: false
+			required: true
 		},
 		description: {
 			type: String
@@ -129,7 +122,7 @@ const ProfileSchema = new Schema({
 			},
 			text:{
 				type: String,
-				required: false
+				required: true
 			},
 			firstname:{
 				type: String
