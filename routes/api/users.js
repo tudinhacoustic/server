@@ -101,7 +101,25 @@ const {errors, isValid} = validateLoginInput(req.body);
     })
   })
 })
-
+//Mới vào trang sẽ cho người dùng Add ProfilePicture và Phonenumber
+router.post('/addLastUser', passport.authenticate('jwt', {session: false}), (req, res)=>{
+  const newUser = {
+    avatar: req.body.avatar,
+    phonenumber: req.body.phonenumber
+  }
+  User.findOneAndUpdate({_id: req.user.id},{$set: newUser}, {new: true})
+    .then(profile => {
+      res.json({
+        data: {
+          "message": "Add Successful",
+          "TYPE":"POST",
+          data: profile
+        }
+      })
+    }).catch(err => {
+      console.log('Profile không tồn tại')
+    })
+})
 router.get('/test', passport.authenticate('jwt', {session: false}), (req, res)=>{
   res.json({
     id: req.user._id,

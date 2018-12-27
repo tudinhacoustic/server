@@ -39,7 +39,7 @@ const ProfileSchema = new Schema({
 		website:
 		{
 			type: String,
-			required: true
+			required: false
 		},
 		job:
 		{
@@ -92,52 +92,21 @@ const ProfileSchema = new Schema({
 			required: true
 		},
 		to: {
-			type: Date
+			type: Date,
 		},
 		current: {
 			type: Boolean,
-			required: true
+			required: false
 		},
 		description: {
 			type: String
 		}
 	}],
-	vote: [{
-		likes:[{
-			user: {
-				type: Schema.Types.ObjectId,
-				ref: 'User'
-			}
-		}],
-		unlikes: [{
-			user: {
-				type: Schema.Types.ObjectId,
-				ref: 'User'
-			}
-		}],
-		comments: [{
-			user: {
-				type: Schema.Types.ObjectId,
-				ref: 'User'
-			},
-			text:{
-				type: String,
-				required: true
-			},
-			firstname:{
-				type: String
-			},
-			lastname:{
-				type: String
-			},
-			avatar:{
-				type: String
-			},
-			date:{
-				type: Date,
-				default: Date.now
-			}
-		}],
+	love:[{
+		user:{
+			type: Schema.Types.ObjectId,
+			ref: 'User'
+		}
 	}],
 	posts: [{
 		user:{
